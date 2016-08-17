@@ -1,0 +1,45 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/converger
+LOG_DIR=/var/vcap/sys/log/converger
+CONF_DIR=/var/vcap/jobs/converger/config
+PIDFILE=$RUN_DIR/converger.pid
+
+source /var/vcap/packages/pid_utils/pid_utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "converger"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > /var/vcap/sys/run/converger/converger.pid
+
+    exec /var/vcap/packages/converger/bin/converger \
+      -etcdCluster=<%= p("diego.converger.etcd.machines").map{|addr| "\"http://#{addr}:4001\""}.join(",")%> \
+      -consulCluster=http://127.0.0.1:8500 \
+      -receptorTaskHandlerURL=<%= p("diego.converger.receptor_task_handler_url") %> \
+      -debugAddr=<%= p("diego.converger.debug_addr") %> \
+      -convergeRepeatInterval=<%= "#{p("diego.converger.repeat_interval_in_seconds")}s" %> \
+      -kickPendingTaskDuration=<%= "#{p("diego.converger.kick_pending_task_duration_in_seconds")}s" %> \
+      -expireCompletedTaskDuration=<%= "#{p("diego.converger.expire_completed_task_duration_in_seconds")}s" %> \
+      -expirePendingTaskDuration=<%= "#{p("diego.converger.expire_pending_task_duration_in_seconds")}s" %> \
+      -logLevel=<%= p("diego.converger.log_level") %> \
+      2>> $LOG_DIR/converger.stderr.log \
+      1> >(tee -a $LOG_DIR/converger.stdout.log | logger -t vcap.converger)
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: converger_ctl {start|stop}"
+
+    ;;
+
+esac

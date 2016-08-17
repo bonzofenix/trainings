@@ -1,0 +1,274 @@
+[submodule "src/github.com/pivotal-golang/cacheddownloader"]
+	path = src/github.com/pivotal-golang/cacheddownloader
+	url = https://github.com/pivotal-golang/cacheddownloader
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/diego-smoke-tests"]
+	path = src/github.com/cloudfoundry-incubator/diego-smoke-tests
+	url = https://github.com/cloudfoundry-incubator/diego-smoke-tests
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/auction"]
+	path = src/github.com/cloudfoundry-incubator/auction
+	url = https://github.com/cloudfoundry-incubator/auction
+	branch = master
+[submodule "src/github.com/cloudfoundry/gunk"]
+	path = src/github.com/cloudfoundry/gunk
+	url = https://github.com/cloudfoundry/gunk
+	branch = master
+[submodule "src/github.com/tedsuo/ifrit"]
+	path = src/github.com/tedsuo/ifrit
+	url = https://github.com/tedsuo/ifrit
+	branch = master
+[submodule "src/github.com/onsi/gomega"]
+	path = src/github.com/onsi/gomega
+	url = https://github.com/onsi/gomega
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/file-server"]
+	path = src/github.com/cloudfoundry-incubator/file-server
+	url = https://github.com/cloudfoundry-incubator/file-server
+	branch = master
+[submodule "src/github.com/coreos/go-etcd"]
+	path = src/github.com/coreos/go-etcd
+	url = https://github.com/coreos/go-etcd
+	branch = master
+[submodule "src/github.com/pivotal-golang/archiver"]
+	path = src/github.com/pivotal-golang/archiver
+	url = https://github.com/pivotal-golang/archiver
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/cf-test-helpers"]
+	path = src/github.com/cloudfoundry-incubator/cf-test-helpers
+	url = https://github.com/cloudfoundry-incubator/cf-test-helpers
+	branch = master
+[submodule "src/github.com/ajstarks/svgo"]
+	path = src/github.com/ajstarks/svgo
+	url = https://github.com/ajstarks/svgo
+[submodule "src/github.com/cloudfoundry-incubator/executor"]
+	path = src/github.com/cloudfoundry-incubator/executor
+	url = https://github.com/cloudfoundry-incubator/executor
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/stager"]
+	path = src/github.com/cloudfoundry-incubator/stager
+	url = https://github.com/cloudfoundry-incubator/stager
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/garden"]
+	path = src/github.com/cloudfoundry-incubator/garden
+	url = https://github.com/cloudfoundry-incubator/garden
+	branch = master
+[submodule "src/github.com/onsi/ginkgo"]
+	path = src/github.com/onsi/ginkgo
+	url = https://github.com/onsi/ginkgo
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/rep"]
+	path = src/github.com/cloudfoundry-incubator/rep
+	url = https://github.com/cloudfoundry-incubator/rep
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/candiedyaml"]
+	path = src/github.com/cloudfoundry-incubator/candiedyaml
+	url = https://github.com/cloudfoundry-incubator/candiedyaml
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/garden-linux"]
+	path = src/github.com/cloudfoundry-incubator/garden-linux
+	url = https://github.com/cloudfoundry-incubator/garden-linux
+	branch = master
+[submodule "src/github.com/cloudfoundry/gosteno"]
+	path = src/github.com/cloudfoundry/gosteno
+	url = https://github.com/cloudfoundry/gosteno
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/auctioneer"]
+	path = src/github.com/cloudfoundry-incubator/auctioneer
+	url = https://github.com/cloudfoundry-incubator/auctioneer
+	branch = master
+[submodule "src/github.com/nu7hatch/gouuid"]
+	path = src/github.com/nu7hatch/gouuid
+	url = https://github.com/nu7hatch/gouuid
+	branch = master
+[submodule "src/github.com/cloudfoundry/gorouter"]
+	path = src/github.com/cloudfoundry/gorouter
+	url = https://github.com/cloudfoundry/gorouter
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/nsync"]
+	path = src/github.com/cloudfoundry-incubator/nsync
+	url = https://github.com/cloudfoundry-incubator/nsync
+	branch = master
+[submodule "src/github.com/tedsuo/rata"]
+	path = src/github.com/tedsuo/rata
+	url = https://github.com/tedsuo/rata
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/cf-debug-server"]
+	path = src/github.com/cloudfoundry-incubator/cf-debug-server
+	url = https://github.com/cloudfoundry-incubator/cf-debug-server
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/inigo"]
+	path = src/github.com/cloudfoundry-incubator/inigo
+	url = https://github.com/cloudfoundry-incubator/inigo
+	branch = master
+[submodule "src/github.com/GaryBoone/GoStats"]
+	path = src/github.com/GaryBoone/GoStats
+	url = https://github.com/GaryBoone/GoStats
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/converger"]
+	path = src/github.com/cloudfoundry-incubator/converger
+	url = https://github.com/cloudfoundry-incubator/converger
+	branch = master
+[submodule "src/github.com/cloudfoundry/storeadapter"]
+	path = src/github.com/cloudfoundry/storeadapter
+	url = https://github.com/cloudfoundry/storeadapter
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/runtime-metrics-server"]
+	path = src/github.com/cloudfoundry-incubator/runtime-metrics-server
+	url = https://github.com/cloudfoundry-incubator/runtime-metrics-server
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/route-emitter"]
+	path = src/github.com/cloudfoundry-incubator/route-emitter
+	url = https://github.com/cloudfoundry-incubator/route-emitter
+	branch = master
+[submodule "src/github.com/pivotal-golang/lager"]
+	path = src/github.com/pivotal-golang/lager
+	url = https://github.com/pivotal-golang/lager
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/cf-lager"]
+	path = src/github.com/cloudfoundry-incubator/cf-lager
+	url = https://github.com/cloudfoundry-incubator/cf-lager
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/runtime-schema"]
+	path = src/github.com/cloudfoundry-incubator/runtime-schema
+	url = https://github.com/cloudfoundry-incubator/runtime-schema
+	branch = master
+[submodule "src/github.com/cloudfoundry/dropsonde"]
+	path = src/github.com/cloudfoundry/dropsonde
+	url = https://github.com/cloudfoundry/dropsonde
+	branch = master
+[submodule "src/github.com/pivotal-golang/bytefmt"]
+	path = src/github.com/pivotal-golang/bytefmt
+	url = https://github.com/pivotal-golang/bytefmt
+	branch = master
+[submodule "src/code.google.com/p/gogoprotobuf"]
+	path = src/code.google.com/p/gogoprotobuf
+	url = https://code.google.com/p/gogoprotobuf
+[submodule "src/github.com/bmizerany/pat"]
+	path = src/github.com/bmizerany/pat
+	url = https://github.com/bmizerany/pat
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/tps"]
+	path = src/github.com/cloudfoundry-incubator/tps
+	url = https://github.com/cloudfoundry-incubator/tps
+	branch = master
+[submodule "src/github.com/apcera/nats"]
+	path = src/github.com/apcera/nats
+	url = https://github.com/apcera/nats
+	branch = master
+[submodule "src/github.com/apcera/gnatsd"]
+	path = src/github.com/apcera/gnatsd
+	url = https://github.com/apcera/gnatsd
+[submodule "src/github.com/coreos/etcd"]
+	path = src/github.com/coreos/etcd
+	url = https://github.com/coreos/etcd
+[submodule "src/github.com/cloudfoundry-incubator/diego-acceptance-tests"]
+	path = src/github.com/cloudfoundry-incubator/diego-acceptance-tests
+	url = https://github.com/cloudfoundry-incubator/diego-acceptance-tests
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/receptor"]
+	path = src/github.com/cloudfoundry-incubator/receptor
+	url = https://github.com/cloudfoundry-incubator/receptor
+	branch = master
+[submodule "src/github.com/goji/httpauth"]
+	path = src/github.com/goji/httpauth
+	url = https://github.com/goji/httpauth
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/natbeat"]
+	path = src/github.com/cloudfoundry-incubator/natbeat
+	url = https://github.com/cloudfoundry-incubator/natbeat
+	branch = master
+[submodule "src/github.com/vito/go-sse"]
+	path = src/github.com/vito/go-sse
+	url = https://github.com/vito/go-sse
+	branch = master
+[submodule "src/github.com/pivotal-golang/localip"]
+	path = src/github.com/pivotal-golang/localip
+	url = https://github.com/pivotal-golang/localip
+	branch = master
+[submodule "src/github.com/golang/protobuf"]
+	path = src/github.com/golang/protobuf
+	url = https://github.com/golang/protobuf
+	branch = master
+[submodule "src/github.com/pivotal-golang/operationq"]
+	path = src/github.com/pivotal-golang/operationq
+	url = https://github.com/pivotal-golang/operationq
+	branch = master
+[submodule "src/github.com/hashicorp/go-multierror"]
+	path = src/github.com/hashicorp/go-multierror
+	url = https://github.com/hashicorp/go-multierror
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/cf_http"]
+	path = src/github.com/cloudfoundry-incubator/cf_http
+	url = https://github.com/cloudfoundry-incubator/cf_http
+	branch = master
+[submodule "src/github.com/pivotal-golang/clock"]
+	path = src/github.com/pivotal-golang/clock
+	url = https://github.com/pivotal-golang/clock
+	branch = master
+[submodule "src/github.com/pivotal-golang/eventhub"]
+	path = src/github.com/pivotal-golang/eventhub
+	url = https://github.com/pivotal-golang/eventhub
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/buildpack_app_lifecycle"]
+	path = src/github.com/cloudfoundry-incubator/buildpack_app_lifecycle
+	url = https://github.com/cloudfoundry-incubator/buildpack_app_lifecycle
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/docker_app_lifecycle"]
+	path = src/github.com/cloudfoundry-incubator/docker_app_lifecycle
+	url = https://github.com/cloudfoundry-incubator/docker_app_lifecycle
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/diegocanaryapp"]
+	path = src/github.com/cloudfoundry-incubator/diegocanaryapp
+	url = https://github.com/cloudfoundry-incubator/diegocanaryapp
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/consuladapter"]
+	path = src/github.com/cloudfoundry-incubator/consuladapter
+	url = https://github.com/cloudfoundry-incubator/consuladapter
+	branch = master
+[submodule "src/github.com/hashicorp/consul"]
+	path = src/github.com/hashicorp/consul
+	url = https://github.com/hashicorp/consul
+[submodule "src/github.com/armon/go-radix"]
+	path = src/github.com/armon/go-radix
+	url = https://github.com/armon/go-radix
+[submodule "src/github.com/hashicorp/go-msgpack"]
+	path = src/github.com/hashicorp/go-msgpack
+	url = https://github.com/hashicorp/go-msgpack
+[submodule "src/github.com/hashicorp/golang-lru"]
+	path = src/github.com/hashicorp/golang-lru
+	url = https://github.com/hashicorp/golang-lru
+[submodule "src/github.com/hashicorp/hcl"]
+	path = src/github.com/hashicorp/hcl
+	url = https://github.com/hashicorp/hcl
+[submodule "src/golang.org/x/crypto"]
+	path = src/golang.org/x/crypto
+	url = https://go.googlesource.com/crypto
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/diego-ssh"]
+	path = src/github.com/cloudfoundry-incubator/diego-ssh
+	url = https://github.com/cloudfoundry-incubator/diego-ssh
+	branch = master
+[submodule "src/github.com/kr/pty"]
+	path = src/github.com/kr/pty
+	url = https://github.com/kr/pty
+	branch = master
+[submodule "src/github.com/creack/termios"]
+	path = src/github.com/creack/termios
+	url = https://github.com/creack/termios
+	branch = master
+[submodule "src/github.com/cloudfoundry-incubator/docker-registry-acceptance-tests"]
+	path = src/github.com/cloudfoundry-incubator/docker-registry-acceptance-tests
+	url = https://github.com/cloudfoundry-incubator/docker-registry-acceptance-tests
+	branch = master
+[submodule "src/github.com/cloudfoundry/noaa"]
+	path = src/github.com/cloudfoundry/noaa
+	url = https://github.com/cloudfoundry/noaa
+	branch = master
+[submodule "src/github.com/gogo/protobuf"]
+	path = src/github.com/gogo/protobuf
+	url = https://github.com/gogo/protobuf
+	branch = master
+[submodule "src/github.com/gorilla/websocket"]
+	path = src/github.com/gorilla/websocket
+	url = https://github.com/gorilla/websocket

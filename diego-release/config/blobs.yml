@@ -1,0 +1,41 @@
+---
+cf-cli/cf-linux-amd64.tgz:
+  object_id: 45e4fdf9-13cb-4aa3-823f-cb032c05cc8c
+  sha: f845800310e4b702a39a2f1191e3d71862630103
+  size: 4803309
+consul/consul_0.5.0_linux_amd64.zip:
+  object_id: 5a0b41a5-320f-448c-b932-4e336c5c9ca6
+  sha: 00e4c6e9ff2fb326d3b586fd86c3037f3b7e0974
+  size: 4669655
+consul_0.4/consul:
+  object_id: 78d7528a-f9f1-4627-ad54-78c3a387180a
+  sha: 8be7984e9e1b7aab3d1eee14acdf59bb62207b6c
+  size: 16085929
+docker/docker-1.5.0:
+  object_id: 656e64f4-799e-4a70-9263-d103381af403
+  sha: eb93ea4baf7acf1fd5e21d9d814b07eea5c0a264
+  size: 15005140
+golang/go1.4.linux-amd64.tar.gz:
+  object_id: c5066e19-ae95-47e3-8b67-60a753c7755d
+  sha: cd82abcb0734f82f7cf2d576c9528cebdafac4c6
+  size: 63289725
+iptables/iptables-1.4.21.tar.bz2:
+  object_id: fd27e77f-6342-4fbd-8ede-2cd9c37f8165
+  sha: 85d4160537546a23a7e42bc26dd7ee62a0ede4c8
+  size: 547439
+lifecycles/windows_app_lifecycle-4dcba80.tgz:
+  object_id: a74df771-e77a-424a-9d1e-5a3c04c41e26
+  sha: 94278c142ce379a06f2eb8d3c5a9cbafcf89da9d
+  size: 812102
+rootfs/cflinuxfs2.tar.gz:
+  object_id: c4187ea1-2c4d-4b23-a43d-718f3a7197e7
+  sha: 6f4de6e0e721cd60d9d3dbebe57d2708627ca4ac
+  size: 222248672
+rootfs/lucid64.tar.gz:
+  object_id: 7c599c6e-d221-44d2-8cdf-4e27ccbc7410
+  sha: c37267bd6f79b2e5a1fd15a18417600c76b4b863
+  size: 199595677
+shadow/shadow-4.2.1.tar.gz:
+  object_id: 676ee5b7-b8a9-4132-8f8e-99b8729e0ce9
+  sha: 1d205418863dd02b2b8af0fa78fcce5d7c848d1f
+  size: 3686676

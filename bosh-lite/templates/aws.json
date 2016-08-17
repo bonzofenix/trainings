@@ -1,0 +1,61 @@
+{
+  "variables": {
+    "base_ami": "ami-d2ff23ba",
+    "region": "us-east-1",
+    "build_number": "0"
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "ami_name": "boshlite-{{user `build_number`}}",
+    "instance_type": "m1.large",
+    "region": "{{user `region`}}",
+    "source_ami":  "{{user `base_ami`}}",
+    "ssh_username": "ubuntu",
+    "ami_description": "Bosh-lite AMI (build {{user `build_number`}})"
+  }],
+  "provisioners": [{
+    "type": "shell",
+    "inline": "while [ ! -f /var/lib/cloud/instance/boot-finished ] ; do sleep 1; done"
+  },{
+    "type": "shell",
+    "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -S -E {{ .Path }}",
+    "scripts": [
+      "scripts/quiet-tty-warning.sh",
+      "scripts/update-sources-list.sh",
+      "scripts/update-trusty-kernel.sh",
+      "scripts/kernel-cleanup.sh",
+      "scripts/admin-sudoers.sh",
+      "scripts/setup-syslog.sh"
+    ]
+  },{
+    "type": "shell",
+    "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -S -E {{ .Path }}",
+    "scripts": [
+      "scripts/aws-grub.sh",
+      "scripts/aws-preseed.sh",
+      "scripts/vagrant-pub-key.sh"
+    ]
+  },{
+    "type": "packer-bosh",
+    "assets_dir": "packer-bosh/assets",
+    "manifest_path": "bosh_lite_manifest.yml",
+    "ssh_password": "vagrant"
+  },{
+    "type": "shell",
+    "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -S -E {{ .Path }}",
+    "remote_path": "/opt/bosh-provisioner/packer-shell.sh",
+    "scripts": [
+      "scripts/set-temp-dir.sh",
+      "scripts/install-cli-tools.sh",
+      "scripts/clean-up.sh",
+      "scripts/shrink-disk.sh"
+    ]
+  }],
+
+  "post-processors": [{
+    "type": "vagrant",
+    "keep_input_artifact": true,
+    "vagrantfile_template": "templates/vagrant-aws.tpl",
+    "output": "bosh-lite-{{ .Provider }}-ubuntu-trusty-{{user `build_number`}}.box"
+  }]
+}

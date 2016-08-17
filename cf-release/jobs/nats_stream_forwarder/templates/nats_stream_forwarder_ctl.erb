@@ -1,0 +1,42 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/nats_stream_forwarder
+JOB_DIR=/var/vcap/jobs/nats_stream_forwarder
+BIN_DIR=$JOB_DIR/bin
+PIDFILE=$RUN_DIR/nats_stream_forwarder.pid
+export BUNDLE_GEMFILE=/var/vcap/packages/nats/nats/Gemfile
+export CONFIG_DIR=$JOB_DIR/config
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+  start)
+    pid_guard $PIDFILE "NATS Stream Forwarder"
+
+    mkdir -p $RUN_DIR
+    chown vcap:vcap $RUN_DIR
+
+    PATH=/var/vcap/packages/ruby-2.1.6/bin:$PATH
+
+    echo $$ > $PIDFILE
+    chown vcap:vcap $PIDFILE
+
+
+    <% my_ip = spec.networks.send(properties.networks.apps).ip %>
+    <% connect_ip = p("nats.machines").include?(my_ip) ? my_ip : p("nats.machines").sample %>
+
+    exec chpst -u vcap:vcap bundle exec $BIN_DIR/nats_stream_forwarder.rb 'nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= connect_ip %>:<%= p("nats.port") %>'
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: nats_stream_forwarder_ctl {start|stop}"
+
+    ;;
+
+esac

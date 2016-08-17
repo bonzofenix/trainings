@@ -1,0 +1,45 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/auctioneer
+LOG_DIR=/var/vcap/sys/log/auctioneer
+CONF_DIR=/var/vcap/jobs/auctioneer/config
+PIDFILE=$RUN_DIR/auctioneer.pid
+
+source /var/vcap/packages/pid_utils/pid_utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "auctioneer"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    # Allowed number of open file descriptors
+    ulimit -n 100000
+
+    exec /var/vcap/packages/auctioneer/bin/auctioneer \
+      -etcdCluster=<%= p("diego.auctioneer.etcd.machines").map{|addr| "\"http://#{addr}:4001\""}.join(",")%> \
+      -consulCluster=http://127.0.0.1:8500 \
+      -receptorTaskHandlerURL=<%= p("diego.auctioneer.receptor_task_handler_url") %> \
+      -debugAddr=<%= p("diego.auctioneer.debug_addr") %> \
+      -listenAddr=<%= p("diego.auctioneer.listen_addr") %> \
+      -logLevel=<%= p("diego.auctioneer.log_level") %> \
+      2>> $LOG_DIR/auctioneer.stderr.log \
+      1> >(tee -a $LOG_DIR/auctioneer.stdout.log | logger -t vcap.auctioneer)
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: auctioneer_ctl {start|stop}"
+
+    ;;
+
+esac

@@ -1,0 +1,46 @@
+check process cloud_controller_ng
+  with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl start"
+  stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl stop"
+  group vcap
+<% if properties.nfs_server.address %>
+  depends on nfs_mounter
+<% end %>
+  if totalmem > <%= p("cc.thresholds.api.alert_if_above_mb") %> Mb for 3 cycles then alert
+  if totalmem > <%= p("cc.thresholds.api.restart_if_consistently_above_mb") %> Mb for 15 cycles then exec "/var/vcap/jobs/cloud_controller_ng/bin/restart_drain"
+  if totalmem > <%= p("cc.thresholds.api.restart_if_above_mb") %> Mb for 3 cycles then exec "/var/vcap/jobs/cloud_controller_ng/bin/restart_drain"
+  if failed host <%= spec.networks.send(properties.networks.apps).ip %> port <%= p("cc.external_port") %> protocol http
+      and request '/v2/info'
+      with timeout 60 seconds for 5 cycles
+  then restart
+
+<% (1..(p("cc.jobs.local.number_of_workers"))).each do |index| %>
+check process cloud_controller_worker_local_<%= index %>
+  with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_worker_<%= index %>.pid
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_worker_ctl start <%= index %>"
+  stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_worker_ctl stop <%= index %>"
+<% if spec.index.to_i == 0 %>
+  depends on cloud_controller_ng
+<% end %>
+  group vcap
+
+  if totalmem > <%= p("cc.thresholds.api.alert_if_above_mb") %> Mb for 3 cycles then alert
+  if totalmem > <%= p("cc.thresholds.api.restart_if_consistently_above_mb") %> Mb for 15 cycles then restart
+  if totalmem > <%= p("cc.thresholds.api.restart_if_above_mb") %> Mb for 3 cycles then restart
+<% end %>
+
+check process nginx_cc
+  with pidfile /var/vcap/sys/run/nginx_cc/nginx.pid
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_ctl start"
+  stop program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_ctl stop"
+  depends on cloud_controller_ng
+  group vcap
+
+<% if_p("cc.newrelic.license_key") do %>
+check process nginx_newrelic_plugin
+  with pidfile /var/vcap/sys/run/nginx_newrelic_plugin/nginx_newrelic_plugin.pid
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_newrelic_plugin_ctl start"
+  stop program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_newrelic_plugin_ctl stop"
+  group vcap
+<% end %>
+

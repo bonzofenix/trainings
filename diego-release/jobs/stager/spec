@@ -1,0 +1,55 @@
+---
+name: stager
+
+templates:
+  stager_ctl.erb: bin/stager_ctl
+  dns_health_check.erb: bin/dns_health_check
+
+packages:
+  - pid_utils
+  - stager
+
+properties:
+  diego.ssl.skip_cert_verify:
+    description: "when connecting over https, ignore bad ssl certificates"
+    default: false
+
+  diego.stager.cc.external_port:
+    description: "External port to access the Cloud Controller"
+  diego.stager.cc.basic_auth_username:
+    description: "Basic auth username for CC internal API"
+    default: "internal_user"
+  diego.stager.cc.basic_auth_password:
+    description: "Basic auth password for CC internal API"
+  diego.stager.cc.internal_service_hostname:
+    description: "Internal CC host name"
+    default: cloud-controller-ng.service.consul
+  diego.stager.lifecycle_bundles:
+    description: "List of lifecycle bundles arguments for different stacks in form 'lifecycle-name:path/to/bundle'"
+    default:
+      - "buildpack/cflinuxfs2:buildpack_app_lifecycle/buildpack_app_lifecycle.tgz"
+      - "buildpack/lucid64:buildpack_app_lifecycle/buildpack_app_lifecycle.tgz"
+      - "buildpack/windows2012R2:windows_app_lifecycle/windows_app_lifecycle.tgz"
+      - "docker:docker_app_lifecycle/docker_app_lifecycle.tgz"
+  diego.stager.stager_url:
+    description: URL of stager, used for completion callbacks from receptor API
+    default: http://stager.service.consul:8888
+  diego.stager.diego_api_url:
+    description: URL of diego API
+    default: http://receptor.service.consul:8888
+  diego.stager.debug_addr:
+    description: "address at which to serve debug info"
+    default: "0.0.0.0:17011"
+  diego.stager.log_level:
+    description: "Log level"
+    default: "info"
+  diego.stager.docker_staging_stack:
+    description: "stack to use for staging Docker applications"
+    default: "cflinuxfs2"
+
+  diego.file_server.file_server_url:
+    description: URL of file server
+    default: http://file-server.service.consul:8080
+  diego.stager.insecure_docker_registry:
+    description: "Allow insecure Private Docker Registry to be used"
+    default: false

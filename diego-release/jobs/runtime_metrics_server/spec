@@ -1,0 +1,21 @@
+---
+name: runtime_metrics_server
+
+templates:
+  runtime_metrics_server_ctl.erb: bin/runtime_metrics_server_ctl
+
+packages:
+  - pid_utils
+  - runtime_metrics_server
+
+properties:
+  diego.runtime_metrics_server.etcd.machines:
+    description: "IPs pointing to the ETCD cluster"
+  diego.runtime_metrics_server.debug_addr:
+    description: "address at which to serve debug info"
+    default: "0.0.0.0:17010"
+  diego.runtime_metrics_server.log_level:
+    description: "Log level"
+    default: "info"
+  diego.runtime_metrics_server.diego_api_url:
+    description: "Receptor URL"

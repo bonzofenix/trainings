@@ -1,0 +1,34 @@
+---
+name: converger
+
+templates:
+  converger_ctl.erb: bin/converger_ctl
+
+packages:
+  - pid_utils
+  - converger
+
+properties:
+  diego.converger.etcd.machines:
+    description: "IPs pointing to the ETCD cluster"
+  diego.converger.debug_addr:
+    description: "address at which to serve debug info"
+    default: "0.0.0.0:17002"
+  diego.converger.repeat_interval_in_seconds:
+    description: "the interval between runs of the converge process"
+    default: 30
+  diego.converger.kick_pending_task_duration_in_seconds:
+    description: "the interval, in seconds, between kicks to pending tasks in seconds"
+    default: 30
+  diego.converger.expire_completed_task_duration_in_seconds:
+    description: "completed, unresolved tasks are deleted after this duration in seconds"
+    default: 120
+  diego.converger.expire_pending_task_duration_in_seconds:
+    description: "unclaimed tasks are marked as failed, after this duration in seconds"
+    default: 1800
+  diego.converger.log_level:
+    description: "Log level"
+    default: "info"
+  diego.converger.receptor_task_handler_url:
+    description: "URL for task completion call back"
+    default: http://receptor.service.consul:1169

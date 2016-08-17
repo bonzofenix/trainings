@@ -1,0 +1,21 @@
+[submodule "vanilla-node"]
+	path = vanilla-node
+	url = https://github.com/bonzofenix/vanilla-node
+[submodule "cf-env"]
+	path = cf-env
+	url = https://github.com/cloudfoundry-community/cf-env
+[submodule "github-service-broker-ruby"]
+	path = github-service-broker-ruby
+	url = https://github.com/cloudfoundry-samples/github-service-broker-ruby
+[submodule "diego-release"]
+	path = diego-release
+	url = https://github.com/cloudfoundry-incubator/diego-release
+[submodule "cf-release"]
+	path = cf-release
+	url = https://github.com/cloudfoundry/cf-release
+[submodule "bosh-lite"]
+	path = bosh-lite
+	url = https://github.com/bonzofenix/bosh-lite
+[submodule "workstation"]
+	path = workstation
+	url = https://github.com/bonzofenix/workstation

@@ -1,0 +1,32 @@
+---
+name: route_emitter
+
+templates:
+  route_emitter_ctl.erb: bin/route_emitter_ctl
+
+packages:
+  - pid_utils
+  - route_emitter
+
+properties:
+  diego.route_emitter.nats.username:
+    description: "Username for server authentication."
+  diego.route_emitter.nats.password:
+    description: "Password for server authentication."
+  diego.route_emitter.nats.port:
+    description: "The port for the NATS server to listen on."
+    default: 4222
+  diego.route_emitter.nats.machines:
+    description: "IP of each NATS cluster member."
+  diego.route_emitter.debug_addr:
+    description: "address at which to serve debug info"
+    default: "0.0.0.0:17009"
+  diego.route_emitter.sync_interval_in_seconds:
+    description: "Interval to sync routes to the router in seconds."
+    default: 60
+  diego.route_emitter.diego_api_url:
+    description: URL of diego API
+    default: http://receptor.service.consul:8888
+  diego.route_emitter.log_level:
+    description: "Log level"
+    default: "info"

@@ -1,0 +1,44 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/route_emitter
+LOG_DIR=/var/vcap/sys/log/route_emitter
+CONF_DIR=/var/vcap/jobs/route_emitter/config
+PIDFILE=$RUN_DIR/route_emitter.pid
+
+source /var/vcap/packages/pid_utils/pid_utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "route_emitter"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > /var/vcap/sys/run/route_emitter/route_emitter.pid
+
+    exec /var/vcap/packages/route_emitter/bin/route-emitter \
+      -consulCluster=http://127.0.0.1:8500 \
+      -natsAddresses=<%= p("diego.route_emitter.nats.machines").collect { |addr| "#{addr}:#{p("diego.route_emitter.nats.port")}" }.join(",") %> \
+      -natsUsername=<%= p("diego.route_emitter.nats.username") %> \
+      -natsPassword=<%= p("diego.route_emitter.nats.password") %> \
+      -diegoAPIURL=<%= p("diego.route_emitter.diego_api_url") %> \
+      -debugAddr=<%= p("diego.route_emitter.debug_addr") %> \
+      -syncInterval=<%= "#{p("diego.route_emitter.sync_interval_in_seconds")}s" %> \
+      -logLevel=<%= p("diego.route_emitter.log_level") %> \
+      2>> $LOG_DIR/route_emitter.stderr.log \
+      1> >(tee -a $LOG_DIR/route_emitter.stdout.log | logger -t vcap.route-emitter)
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: route_emitter_ctl {start|stop}"
+
+    ;;
+
+esac

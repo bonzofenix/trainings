@@ -1,0 +1,25 @@
+---
+name: auctioneer
+
+templates:
+  auctioneer_ctl.erb: bin/auctioneer_ctl
+
+packages:
+  - pid_utils
+  - auctioneer
+
+properties:
+  diego.auctioneer.etcd.machines:
+    description: "IPs pointing to the ETCD cluster"
+  diego.auctioneer.debug_addr:
+    description: "address at which to serve debug info"
+    default: "0.0.0.0:17001"
+  diego.auctioneer.listen_addr:
+    description: "address where auctioneer listens for LRP and task start auction requests"
+    default: "0.0.0.0:9016"
+  diego.auctioneer.log_level:
+    description: "Log level"
+    default: "info"
+  diego.auctioneer.receptor_task_handler_url:
+    description: "URL for task completion call back"
+    default: http://receptor.service.consul:1169

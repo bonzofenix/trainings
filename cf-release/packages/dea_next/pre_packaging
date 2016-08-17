@@ -1,0 +1,4 @@
+set -e -x
+
+cd ${BUILD_DIR}/dea_next
+BUNDLE_WITHOUT=development:test bundle package --all

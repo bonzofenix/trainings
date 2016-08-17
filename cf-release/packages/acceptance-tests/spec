@@ -1,0 +1,7 @@
+---
+name: acceptance-tests
+dependencies:
+  - golang1.3
+  - cli
+files:
+  - acceptance-tests/**/*

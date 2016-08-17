@@ -1,0 +1,61 @@
+---
+name: nsync
+
+templates:
+  nsync_listener_ctl.erb: bin/nsync_listener_ctl
+  nsync_bulker_ctl.erb: bin/nsync_bulker_ctl
+  dns_health_check.erb: bin/dns_health_check
+
+packages:
+  - pid_utils
+  - nsync
+
+properties:
+  diego.ssl.skip_cert_verify:
+    description: "when connecting over https, ignore bad ssl certificates"
+    default: false
+
+  diego.nsync.diego_api_url:
+    description: URL of diego API
+    default: http://receptor.service.consul:8888
+  diego.nsync.nsync_url:
+    description: URL of nsync
+    default: http://nsync.service.consul:8787
+  diego.nsync.lifecycle_bundles:
+    description: "List of lifecycle bundles arguments for different stacks in form 'lifecycle-name:path/to/bundle'"
+    default:
+      - "buildpack/cflinuxfs2:buildpack_app_lifecycle/buildpack_app_lifecycle.tgz"
+      - "buildpack/lucid64:buildpack_app_lifecycle/buildpack_app_lifecycle.tgz"
+      - "buildpack/windows2012R2:windows_app_lifecycle/windows_app_lifecycle.tgz"
+      - "docker:docker_app_lifecycle/docker_app_lifecycle.tgz"
+  diego.nsync.cc.base_url:
+    description: base URL of the cloud controller
+  diego.nsync.cc.basic_auth_username:
+    description: "basic auth username for CC bulk API"
+    default: "internal_user"
+  diego.nsync.cc.basic_auth_password:
+    description: "basic auth password for CC bulk API"
+  diego.nsync.cc.polling_interval_in_seconds:
+    description: "interval at which to poll bulk API in seconds"
+    default: 30
+  diego.nsync.cc.bulk_batch_size:
+    description: "number of apps to fetch at once from bulk API"
+    default: 500
+  diego.nsync.cc.fetch_timeout_in_seconds:
+    description: "How long to wait for completion of requests to CC in seconds."
+    default: 30
+  diego.nsync.listener_debug_addr:
+    description: "address at which to serve debug info"
+    default: "0.0.0.0:17006"
+  diego.nsync.bulker_debug_addr:
+    description: "address at which to serve debug info"
+    default: "0.0.0.0:17007"
+  diego.nsync.etcd.machines:
+    description: "IPs pointing to the ETCD cluster"
+  diego.nsync.log_level:
+    description: "Log level"
+    default: "info"
+
+  diego.file_server.file_server_url:
+    description: URL of file server
+    default: http://file-server.service.consul:8080

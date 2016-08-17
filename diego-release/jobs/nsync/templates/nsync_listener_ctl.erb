@@ -1,0 +1,46 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/nsync
+LOG_DIR=/var/vcap/sys/log/nsync
+CONF_DIR=/var/vcap/jobs/nsync/config
+
+PIDFILE=$RUN_DIR/nsync_listener.pid
+
+source /var/vcap/packages/pid_utils/pid_utils.sh
+
+<% require "shellwords" %>
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "nsync_listener"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    exec /var/vcap/packages/nsync/bin/nsync-listener \
+      -diegoAPIURL=<%= p("diego.nsync.diego_api_url") %> \
+      -nsyncURL=<%= p("diego.nsync.nsync_url") %> \
+      -debugAddr=<%= p("diego.nsync.listener_debug_addr") %> \
+      <%= p("diego.nsync.lifecycle_bundles").map { |bundle| "-lifecycle #{bundle}" }.join(" ") %> \
+      -fileServerURL=<%= p("diego.file_server.file_server_url") %> \
+      -logLevel=<%= p("diego.nsync.log_level") %> \
+      2>> $LOG_DIR/nsync_listener.stderr.log \
+      1> >(tee -a $LOG_DIR/nsync_listener.stdout.log | logger -t vcap.nsync-listener)
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop}"
+
+    ;;
+
+esac
+

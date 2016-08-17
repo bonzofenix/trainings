@@ -1,0 +1,16 @@
+---
+platform: linux
+
+image: docker:///cloudfoundry/inigo-ci
+
+inputs:
+  - name: diego-release
+
+params:
+  GINKGO_PARALLEL: true
+  DEFAULT_EVENTUALLY_TIMEOUT:
+  INIGO_REPEAT_COUNT: 1
+  USE_TMPFS: true
+
+run:
+  path: diego-release/scripts/ci/run_inigo

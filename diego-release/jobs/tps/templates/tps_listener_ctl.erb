@@ -1,0 +1,72 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/tps
+LOG_DIR=/var/vcap/sys/log/tps
+DATA_DIR=/var/vcap/data/tps
+CONF_DIR=/var/vcap/jobs/tps/config
+
+PIDFILE=$RUN_DIR/tps_listener.pid
+
+source /var/vcap/packages/pid_utils/pid_utils.sh
+
+<%
+  def discover_external_ip
+    networks = spec.networks.marshal_dump
+
+    _, network = networks.find do |_name, network_spec|
+      network_spec.default
+    end
+
+    if !network
+      _, network = networks.first
+    end
+
+    if !network
+      raise "Could not determine IP via network spec: #{networks}"
+    end
+
+    network.ip
+  end
+
+  my_ip = discover_external_ip
+%>
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "tps_listener"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $DATA_DIR
+    mkdir -p $LOG_DIR
+
+    depot=$DATA_DIR/depot
+
+    mkdir -p $DATA_DIR/depot
+
+    echo $$ > $PIDFILE
+
+    exec /var/vcap/packages/tps/bin/tps-listener \
+      -diegoAPIURL=<%= p("diego.tps.diego_api_url") %> \
+      -debugAddr=<%= p("diego.tps.listener.debug_addr") %> \
+      -maxInFlightRequests=<%= p("diego.tps.max_in_flight_requests") %> \
+      -listenAddr=<%= "#{my_ip}:1518" %> \
+      -logLevel=<%= p("diego.tps.log_level") %> \
+      -trafficControllerURL=<%= p("diego.tps.traffic_controller_url") %> \
+      -skipSSLVerification=<%= p("diego.ssl.skip_cert_verify") %> \
+      2>> $LOG_DIR/tps_listener.stderr.log \
+      1> >(tee -a $LOG_DIR/tps_listener.stdout.log | logger -t vcap.tps-listener)
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop}"
+
+    ;;
+
+esac

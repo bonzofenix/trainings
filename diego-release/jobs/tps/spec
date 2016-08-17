@@ -1,0 +1,45 @@
+---
+name: tps
+
+templates:
+  tps_listener_ctl.erb: bin/tps_listener_ctl
+  tps_watcher_ctl.erb: bin/tps_watcher_ctl
+  dns_health_check.erb: bin/dns_health_check
+
+packages:
+  - pid_utils
+  - tps
+
+properties:
+  diego.ssl.skip_cert_verify:
+    description: "when connecting over https, ignore bad ssl certificates"
+    default: false
+
+  diego.tps.diego_api_url:
+    description: URL of diego API
+    default: http://receptor.service.consul:8888
+  diego.tps.cc.external_port:
+    description: "External port to access the Cloud Controller"
+  diego.tps.cc.basic_auth_username:
+    description: "Basic auth username for CC internal API"
+    default: "internal_user"
+  diego.tps.cc.basic_auth_password:
+    description: "Basic auth password for CC internal API"
+  diego.tps.cc.internal_service_hostname:
+    description: "Internal CC host name"
+    default: cloud-controller-ng.service.consul
+  diego.tps.listener.debug_addr:
+    description: "address at which to serve debug info"
+    default: "0.0.0.0:17012"
+  diego.tps.watcher.debug_addr:
+    description: "address at which to serve debug info"
+    default: "0.0.0.0:17013"
+  diego.tps.max_in_flight_requests:
+    description: "Maximum number of requests to handle at once."
+    default: 200
+  diego.tps.log_level:
+    description: "Log level"
+    default: "info"
+  diego.tps.traffic_controller_url:
+    description: URL of Traffic controller
+    default: ws://loggregator-trafficcontroller.service.consul:8081

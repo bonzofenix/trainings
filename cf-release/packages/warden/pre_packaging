@@ -1,0 +1,15 @@
+set -e -x
+
+cd ${BUILD_DIR}
+
+# move the warden server bits into the root of the package
+#
+# this turns warden/warden/* into warden/*
+mv warden tmp_warden
+mv tmp_warden/warden .
+mv tmp_warden/warden-client .
+mv tmp_warden/warden-protocol .
+rmdir tmp_warden
+
+cd warden
+BUNDLE_WITHOUT=development:test bundle package --all

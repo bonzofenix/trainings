@@ -1,0 +1,34 @@
+---
+name: ssh_proxy
+
+templates:
+  ssh_proxy_ctl.erb: bin/ssh_proxy_ctl
+  dns_health_check.erb: bin/dns_health_check
+
+packages:
+  - pid_utils
+  - ssh_proxy
+
+properties:
+  diego.ssh_proxy.listen_addr:
+    description: "address for the proxy to listen on"
+    default: "0.0.0.0:2222"
+  diego.ssh_proxy.diego_api_url:
+    description: URL of diego API
+    default: http://receptor.service.dc1.consul:8888
+  diego.ssh_proxy.host_key:
+    description: "PEM encoded RSA private key used to identify host"
+  diego.ssh_proxy.debug_addr:
+    description: "address at which to serve debug info"
+    default: "0.0.0.0:17016"
+  diego.ssh_proxy.log_level:
+    description: "Log level"
+    default: "info"
+  diego.ssh_proxy.cc.internal_service_hostname:
+    description: Internal service hostname of Cloud Controller Api
+    default: cloud-controller-ng.service.consul
+  diego.ssh_proxy.cc.external_port:
+    description: External port of the Cloud Controller API
+  diego.ssh_proxy.cf_only:
+    description: Only allow ssh access for cf applications.
+    default: false

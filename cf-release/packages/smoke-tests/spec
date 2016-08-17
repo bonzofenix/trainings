@@ -1,0 +1,7 @@
+---
+name: smoke-tests
+dependencies:
+  - golang1.3
+  - cli
+files:
+  - smoke-tests/**/*
